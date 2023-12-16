@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->longText('content');
+            $table->foreignIdFor(\App\Models\User::class)
+                ->nullable()
+                ->constrained()
+                ->onUpdate("restrict")
+                ->onDelete("SET NULL");
+            $table->foreignIdFor(\App\Models\Category::class)
+                ->nullable()
+                ->constrained()
+                ->onUpdate("restrict")
+                ->onDelete("SET NULL");
             $table->timestamps();
         });
     }
