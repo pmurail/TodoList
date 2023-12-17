@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserFormRequest;
 use App\Models\User;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class UsersController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function createUser(UserFormRequest $request)
+    public function store(UserFormRequest $request)
     {
         User::create([
             'name' => $request['name'],
