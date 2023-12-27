@@ -13,10 +13,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/users">Liste utilisateurs <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/users">Liste des utilisateurs <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/users/add">Ajouter un utilisateur <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/posts">Liste des articles<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/contact">Contact <span class="sr-only">(current)</span></a>

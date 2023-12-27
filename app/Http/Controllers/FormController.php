@@ -11,4 +11,9 @@ class FormController extends Controller
     {
         return view('userForm');
     }
+
+    public function formPost(): View
+    {
+        return view('postForm');
+    }
 }
