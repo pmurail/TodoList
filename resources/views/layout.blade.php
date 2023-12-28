@@ -22,6 +22,9 @@
                 <a class="nav-link" href="/tags">Liste des tags<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
+                <a class="nav-link" href="/categories">Liste des categories<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
                 <a class="nav-link" href="/contact">Contact <span class="sr-only">(current)</span></a>
             </li>
 

@@ -27,7 +27,7 @@ class UserController extends Controller
             'email' => $request['email'],
             'password' => $request['password']
         ]);
-        return redirect()->route('users.listUser');
+        return redirect()->route('users.listUsers');
     }
 
     /**
@@ -59,7 +59,7 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
         ]);
-        return redirect()->route('users.listUser');
+        return redirect()->route('users.listUsers');
 
     }
 
@@ -71,6 +71,6 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect()->route('users.listUser');
+        return redirect()->route('users.listUsers');
     }
 }

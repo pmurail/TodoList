@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
@@ -27,7 +28,7 @@ Route::post('/contact', [HomeController::class, 'store']);
 
 Route::prefix('/users')->name('users.')->controller(UserController::class)->group(function () {
 
-    Route::get('', [UserController::class, 'index'])->name('listUser');
+    Route::get('', [UserController::class, 'index'])->name('listUsers');
     Route::get('/add', [FormController::class, 'formUser']);
     Route::post('/add', [UserController::class, 'store'])->name('createUser');
     Route::get('/{id}', [UserController::class, 'show']);
@@ -56,3 +57,11 @@ Route::prefix('/tags')->name('tags.')->group(function () {
     Route::delete('/{id}', [TagController::class, 'destroy'])->name('deleteTag');
 });
 
+Route::prefix('/categories')->name('categories.')->group(function () {
+    Route::get('', [CategoryController::class, 'index'])->name('listCategories');
+    Route::get('/add', [CategoryController::class, 'create']);
+    Route::post('/add', [CategoryController::class, 'store'])->name('createCategory');
+    Route::get('/{id}', [CategoryController::class, 'show'])->name('detailsCategory');
+    Route::patch('/{id}', [CategoryController::class, 'update'])->name('updateCategory');
+    Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('deleteCategory');
+});

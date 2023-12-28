@@ -17,7 +17,6 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$tag['name']}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ $tag['created_at']}}</h6>
-                        <p class="card-text">Description du tag</p>
                         <a type="button" class="btn btn-primary" href={{"tags/".$tag['id']}}>Details</a>
                     </div>
                 </div>
