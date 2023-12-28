@@ -19,6 +19,9 @@
                 <a class="nav-link" href="/posts">Liste des articles<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
+                <a class="nav-link" href="/tags">Liste des tags<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
                 <a class="nav-link" href="/contact">Contact <span class="sr-only">(current)</span></a>
             </li>
 

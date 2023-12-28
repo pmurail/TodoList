@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::prefix('/users')->name('users.')->controller(UserController::class)->grou
 
     Route::get('', [UserController::class, 'index'])->name('listUser');
     Route::get('/add', [FormController::class, 'formUser']);
-    Route::post('/add', [UserController::class, 'createUser'])->name('createUser');
+    Route::post('/add', [UserController::class, 'store'])->name('createUser');
     Route::get('/{id}', [UserController::class, 'show']);
     Route::patch('/{id}', [UserController::class, 'update'])->name('updateUser');
     Route::delete('/{id}', [UserController::class, 'destroy'])->name('deleteUser');
@@ -45,3 +46,13 @@ Route::prefix('/posts')->name('posts.')->controller(PostController::class)->grou
     Route::delete('/{id}', [PostController::class, 'destroy'])->name('deletePost');
 
 });
+
+Route::prefix('/tags')->name('tags.')->group(function () {
+    Route::get('', [TagController::class, 'index'])->name('listTags');
+    Route::get('/add', [TagController::class, 'create']);
+    Route::post('/add', [TagController::class, 'store'])->name('createTag');
+    Route::get('/{id}', [TagController::class, 'show'])->name('detailsTag');
+    Route::patch('/{id}', [TagController::class, 'update'])->name('updateTag');
+    Route::delete('/{id}', [TagController::class, 'destroy'])->name('deleteTag');
+});
+
