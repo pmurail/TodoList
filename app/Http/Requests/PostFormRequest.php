@@ -11,7 +11,7 @@ class PostFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,12 +23,10 @@ class PostFormRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|unique:posts,slug|max:255',
+            'slug' => 'required|string|max:255|unique:posts',
             'content' => 'required|string',
             'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
-            'tags' => 'array', // Assurez-vous d'avoir un champ "tags" dans votre formulaire
-            'tags.*' => 'exists:tags,id', // Vérifiez l'existence de chaque tag
         ];
     }
 }

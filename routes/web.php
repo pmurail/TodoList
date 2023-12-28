@@ -38,14 +38,12 @@ Route::prefix('/users')->name('users.')->controller(UserController::class)->grou
 });
 
 Route::prefix('/posts')->name('posts.')->controller(PostController::class)->group(function () {
-
     Route::get('', [PostController::class, 'index'])->name('listPost');
-    Route::get('/add', [FormController::class, 'formPost']);
+    Route::get('/add', [PostController::class, 'create']);
     Route::post('/add', [PostController::class, 'store'])->name('createPost');
-    Route::get('/{id}', [PostController::class, 'show']);
+    Route::get('/{id}', [PostController::class, 'show'])->name('detailsPost');
     Route::patch('/{id}', [PostController::class, 'update'])->name('updatePost');
     Route::delete('/{id}', [PostController::class, 'destroy'])->name('deletePost');
-
 });
 
 Route::prefix('/tags')->name('tags.')->group(function () {

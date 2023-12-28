@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostFormRequest;
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,21 +17,29 @@ class PostController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $posts = Post::paginate(10);
-        return view('posts', ['posts' => $posts, 'user'=>$user]);
+        $posts = Post::all();
+        return view('post.listPosts', compact('posts'));
     }
+
+    /**
+     * Display the form for create a post.
+     */
+    public function create()
+    {
+        $users = User::all();
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('post.formPost', compact('users', 'categories', 'tags'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(PostFormRequest $request)
     {
-        $user = Auth::user();
-        $post = new Post($request->validated());
-        $post = $user->posts()->save($post);
-        $post->tags()->sync($request->validated('tags'));
-        return redirect()->route('posts.listPost');
+        Post::create($request->validated());
+        return redirect()->route('posts.listPosts')->with('success', 'Article créé avec succès.');
     }
 
     /**
@@ -36,10 +47,8 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $post = Post::find($id);
-        if (!$post) return redirect('/post/list');
-        $user = Auth::user();
-        return view('posts', ['post' => $post, 'user'=>$user, 'isAdmin'=>$user->role_id === 2]);
+        $post = Post::findOrFail($id);
+        return view('tag.detailsTag', compact('post'));
     }
 
     /**
@@ -47,7 +56,9 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->update($request->validated());
+        return redirect()->route('posts.listPosts')->with('success', 'Article mis à jour avec succès.');
     }
 
     /**
@@ -57,6 +68,6 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
-        return redirect()->route('post.list')->with('success', "Article '" . $post->title . "' supprimé avec succès");
+        return redirect()->route('posts.index')->with('success', 'Article supprimé avec succès.');
     }
 }
